@@ -23,3 +23,8 @@ Then /I should see all the movies/ do
     step %{I should see "#{movie.title}"}
   end
 end
+
+Then /the director of "(.*)" should be "(.*)"/ do |e1, e2|
+  visit movie_path(Movie.find_by(title: e1))
+  expect(page.body).to include("Director:#{e2}")
+end
